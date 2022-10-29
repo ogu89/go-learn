@@ -22,6 +22,10 @@ func main(){
 		return 
 	}
 
+	score := 0
+	num_questions := 0
+
+
 	fmt.Println("What is better, The RTX 3080 or RTX 3090? ")
 	var answer string
 	var answer2 string
@@ -31,6 +35,7 @@ func main(){
 
 	if answer + " " + answer2 == "RTX 3090"{
 		fmt.Println("Correct!")
+		score ++
 	}else if answer + " " + answer2 == "rtx 3090"{
 		fmt.Println("Correct!")
 	}else if answer + " " + answer2 == "rtX 3090"{
@@ -45,7 +50,13 @@ func main(){
 
 	if corse == 12{
 		fmt.Println("Correct!")
+		score++
 	}else{
 		fmt.Println("Incorrect")
 	}
+
+
+	fmt.Printf("You scored %v out of %v. \n", score, num_questions)
+	percent := (float64(score) / float64(num_questions)) * 100
+	fmt.Printf("you scored: %v%%.", percent)
 }
