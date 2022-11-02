@@ -105,10 +105,17 @@ func createBook(c *gin.Context){
 func main(){
 	router := gin.Default()
 	router.GET("/books", getBooks)
+	//curl localhost:8080/books
+
 	router.GET("/books/:id", bookById)
+
 	router.POST("/books", createBook)
+
 	router.PATCH("/checkout", checkoutBook)
+	// curl --location --request PATCH 'localhost:8080/checkout?id=2'
+
 	router.PATCH("/return", returnBook)
+	// curl --location --request PATCH 'localhost:8080/return?id=2'
 	router.Run("localhost:8080")
 
 }
