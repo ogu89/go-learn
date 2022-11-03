@@ -9,8 +9,8 @@ import (
 
 type todo struct{
 	ID 			string	`json:"id"`
-	Item 		string	`json:"item:`
-	Completed 	bool	`json:"completed`
+	Item 		string	`json:"item"`
+	Completed 	bool	`json:"completed"`
 }
 
 var todos = []todo{
