@@ -56,9 +56,9 @@ func handleGetList(w http.ResponseWriter, r *http.Request){
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 
-	w.Header().set("Access-Control-Allow-Headers", "*")
-	w.Header().set("Access-Control-Allow-Origin", "*")
-	w.Header().set("Access-Control-Allow-Methods", "GET")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "GET")
 	w.Write(output)
 }
 
@@ -107,6 +107,39 @@ func handlePost(w http.ResponseWriter, r *http.Request) (err error) {
 	w.WriteHeader(200)
 	w.Write(output)
 	return
+}
 
+func handlePut(w http.ResponseWriter, r *http.Request) (err error){
+	id, err := strconv.Atoi(path.Base(r.URL.Path))
+	if err != nil {
+		return
+	}
 
+	post, err := retrieve(id)
+	if err != nil{
+		return
+	}
+
+	contentLength := r.ContentLength
+	contentBody := make([]byte, contentLength)
+	r.Body.Read(contentBody)
+
+	err = json.Unmarshal(contentBody, *post)
+	if err != nil {
+		return
+	}
+
+	err = post.update()
+	if err != nil{
+		return
+	}
+
+	output, err := json.MarshalIndent(&post, "", "\t")
+	if err != nil {
+		return
+	}
+
+	w.WriteHeader(200)
+	w.Write(output)
+	return
 }
