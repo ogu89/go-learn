@@ -68,7 +68,7 @@ func (post *Post) update() (err error){
 }
 
 
-// update a specified post.
+// delete a specified post.
 func (post *Post) delete() (err error){
 	stmt := "DELETE FROM posts WHERE id = $1"
 	_, err = Db.Exec(stmt, post.Id)

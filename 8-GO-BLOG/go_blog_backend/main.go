@@ -31,9 +31,9 @@ func handleRequest(w http.ResponseWriter, r *http.Request){
 	case "GET":
 		err = handleGet(w, r)
 	case "POST":
-		err = hadlePost(w, r)
+		err = handlePost(w, r)
 	case "PUT":
-		err = hadlePut(w, r)
+		err = handlePut(w, r)
 	case "DELETE":
 		err = handleDelete(w, r)
 	}
@@ -170,3 +170,7 @@ func handleDelete(w http.ResponseWriter, r *http.Request) (err error) {
 	w.Write(output)
 	return
 }
+
+
+// https://xminatolog.com/post/2475
+// go run not working. I will stop this project in the middle.
